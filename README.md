@@ -1,4 +1,15 @@
-# React + Vite
+# Figma To Design with Reactjs
+
+## Getting Started
+
+Execute following command in root of this repo to run the development server:
+
+```bash
+npm run dev
+
+```
+
+## React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
