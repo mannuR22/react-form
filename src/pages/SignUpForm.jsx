@@ -9,18 +9,18 @@ const SignupForm = () => {
         password: '',
 
     });
-    const [err, setErr] = useState({});
+    const [err, setErr] = useState({
+        email: "",
+        password: ""
+    });
     const [disable, setDisable] = useState(true);
 
     
     const isFormValid = () => {
-
-        if(!formData.email && !formData.password) return false;
-
         let re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         let tempErrors = {};
-        if (formData.email && !re.test(formData.email.toLowerCase()))  
-            tempErrors.email = "Invalid Email";
+        
+        if(formData.email && !re.test(formData.email.toLowerCase())) tempErrors.email = "Invalid Email";
         else tempErrors.email = ""; 
 
         if(formData.password && formData.password.length < 8)
@@ -29,9 +29,9 @@ const SignupForm = () => {
         
         setErr(tempErrors);
 
-        if( !tempErrors.email  && !tempErrors.password)  return true;        
+        if( tempErrors.email  || tempErrors.password || !formData.email || !formData.password)  return false;        
     
-        return false;
+        return true;
 
     }
 
@@ -42,6 +42,7 @@ const SignupForm = () => {
         
     };
     useEffect( () => {
+        
         if(isFormValid())  setDisable(false);
         else setDisable(true);
         
